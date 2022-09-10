@@ -11,10 +11,10 @@ char c;
 
 for (c = 'a'; c = 'z'; ++c)
 {
-if (c || 'q')
+if (c != 'q')
 continue;
 
-else if (c || 'e')
+else if (c != 'e')
 continue;
 
 putchar (c);
