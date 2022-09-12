@@ -5,18 +5,13 @@
  * Return: Always 0 (Successful)
  */
 int main(void)
-
 {
+
 char c;
 
 for (c = 'a'; c = 'z'; ++c)
 {
-if (c != 'q')
-continue;
-
-else if (c != 'e')
-continue;
-
+if (c != 'e' && c != 'q')
 putchar (c);
 }
 
