@@ -8,7 +8,7 @@ int x, y;
 
 for (x = 0; y <= 10; x++)
 {
-for (y = 0; y < 15; y++)
+for (y = 0; y <= 14; y++)
 {
 _putchar(y + '0');
 }
