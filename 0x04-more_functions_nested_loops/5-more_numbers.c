@@ -8,12 +8,12 @@ int x, y;
 
 for (x = 0; y <= 10; x++)
 {
-_putchar(x + '0');
-}
-for (y = 0; y <= 14; y++)
+for (y = 0; y < 15; y++)
 {
-_putchar(y + '0');
+if (y >= 10)
+_putchar((y / 10) + '0');
+_putchar((y % 10) + '0');
 }
 _putchar('\n');
 }
-
+}
