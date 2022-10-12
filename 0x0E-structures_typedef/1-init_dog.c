@@ -6,14 +6,14 @@
  * @name: name
  * @age: age of dog
  * @owner: owner of dog
- * Return: void
  */
 void init_dog(struct dog *d, char *name, float age, char *owner)
 {
-if (d)
+if (d == NULL)
+return (NULL);
 {
-d->name = *name;
+d->name = name;
 d->age = age;
-d->owner = *owner;
+d->owner = owner;
 }
 }
