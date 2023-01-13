@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "lists.h"
 /**
  * print_list - prints all elements
@@ -17,7 +15,7 @@ if (h->str == NULL)
 printf("[0] (nil)\n");
 else
 printf("[%u] %s\n", h->len, h->str);
-h->next = h;
+h = h->next;
 n++;
 }
 return (n);
