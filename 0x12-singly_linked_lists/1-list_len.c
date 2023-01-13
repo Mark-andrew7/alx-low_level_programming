@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "lists.h"
 /**
  * list_len - returns number of elements
@@ -14,10 +11,10 @@ unsigned int n = 0;
 
 
 temp = h;
-while(temp)
+while (temp)
 {
 temp = temp->next;
 n++;
 }
-return(n);
+return (n);
 }
