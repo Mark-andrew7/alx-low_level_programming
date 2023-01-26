@@ -27,6 +27,7 @@ new->next = NULL;
 if (head == NULL)
 {
 *head = new;
+free(new);
 }
 while (temp->next)
 temp = temp->next;
