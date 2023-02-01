@@ -16,10 +16,8 @@ for (i = 0; i < n; i++)
 {
 num = va_arg(ap, int);
 printf("%d", num);
-if (separator == NULL)
-printf("%d", va_arg(ap, int));
-else
-printf("%d%s", va_arg(ap, int), separator);
+if (i < (n - 1) && separator != NULL)
+printf("%s", separator);
 }
 
 printf("\n");
