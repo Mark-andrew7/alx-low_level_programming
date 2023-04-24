@@ -12,7 +12,7 @@ listint_t *tmp = *head;
 
 lastnode = malloc(sizeof(listint_t));
 if (lastnode == NULL)
-return (NULL)
+return (NULL);
 
 lastnode->n = n;
 lastnode->next = NULL;
@@ -27,5 +27,5 @@ while (tmp->next != NULL)
 {
 tmp = tmp->next;
 }
-tmp->next = lastnode
+tmp->next = lastnode;
 }
