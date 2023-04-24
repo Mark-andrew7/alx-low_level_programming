@@ -28,4 +28,5 @@ while (tmp->next != NULL)
 tmp = tmp->next;
 }
 tmp->next = lastnode;
+return (lastnode);
 }
