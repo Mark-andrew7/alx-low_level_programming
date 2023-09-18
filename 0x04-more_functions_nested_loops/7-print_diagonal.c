@@ -4,7 +4,7 @@
  * @n: integer to be checked
  * Return: Always 0
  */
-void print_diagnol(int n)
+void print_diagonal(int n)
 {
 int i;
 int b;
