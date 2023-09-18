@@ -2,7 +2,7 @@
 #include <string.h>
 
 /**
- * is_palindrome_recursive - helper function to check if a string is a palindrome recursively
+ * is_palindrome_recursive - helper function
  * @s: the string to check
  * @start: the starting index
  * @end: the ending index
@@ -23,8 +23,14 @@ return (false);
 return (is_palindrome_recursive(s, start + 1, end - 1));
 }
 
+/**
+ * is_palindrome - returns 1 if str is palindrome
+ * @s: str to check
+ * Return: 1 if true, 0 otherwise
+ */
+
 int is_palindrome(char *s)
 {
 int length = strlen(s);
-return (is_palindrome_recursive(s, 0, length - 1)) ? 1 : 0;
+return (is_palindrome_recursive(s, 0, length - 1 ? 1 : 0));
 }
