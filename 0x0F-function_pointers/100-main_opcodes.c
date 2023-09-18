@@ -25,7 +25,8 @@ return (2);
 
 
 unsigned char *main_ptr = (unsigned char *)main;
-for (int i = 0; i < num_bytes; i++)
+int i;
+for (i = 0; i < num_bytes; i++)
 {
 printf("%02x", main_ptr[i]);
 if (i < num_bytes - 1)
