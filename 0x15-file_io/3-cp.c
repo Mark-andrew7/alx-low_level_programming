@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include "main.h"
+#include <stdarg.h>
+
+#define BUFFER_SIZE 1024
 
 /**
  * error_exit - Print an error message and exit with a specific code.
