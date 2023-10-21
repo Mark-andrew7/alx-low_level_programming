@@ -248,7 +248,7 @@ exit(98);
  *
  * Description: If the file is not an ELF File or the function fails
  */
-int custom_main(int __attribute__((__unused__)) argc, char *argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 Elf64_Ehdr *custom_header;
 int fd, s;
