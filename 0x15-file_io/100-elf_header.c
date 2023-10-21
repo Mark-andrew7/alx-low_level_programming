@@ -16,8 +16,8 @@ e_ident[i] != 'E' &&
 e_ident[i] != 'L' &&
 e_ident[i] != 'F')
 {
-dprintf(STDERR_FILENO, "Error: Not an ELF file\n")
-exit(ELF_NOT_FOUND);
+dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+exit(98);
 }
 }
 }
@@ -54,13 +54,13 @@ void custom_print_class(unsigned char *e_ident)
 printf("  Custom Class:                             ");
 switch (e_ident[EI_CLASS])
 {
-case CUSTOM_ELFCLASS_NONE:
+case ELFCLASSNONE:
 printf("none\n");
 break;
-case CUSTOM_ELFCLASS_32:
+case ELFCLASS32:
 printf("ELF32\n");
 break;
-case CUSTOM_ELFCLASS_64:
+case ELFCLASS64:
 printf("ELF64\n");
 break;
 default:
@@ -78,13 +78,13 @@ printf("  Custom Data:                              ");
 
 switch (e_ident[EI_DATA])
 {
-case CUSTOM_ELFDATA_NONE:
+case ELFDATANONE:
 printf("none\n");
 break;
-case CUSTOM_ELFDATA_2LSB:
+case ELFDATA2LSB:
 printf("2's complement, little endian\n");
 break;
-case CUSTOM_ELFDATA_2MSB:
+case ELFDATA2MSB:
 printf("2's complement, big endian\n");
 break;
 default:
@@ -103,7 +103,7 @@ e_ident[EI_VERSION]);
 
 switch (e_ident[EI_VERSION])
 {
-case CUSTOM_EV_CURRENT:
+case EV_CURRENT:
 printf(" (current)\n");
 break;
 default:
@@ -122,34 +122,34 @@ printf("  Custom OS/ABI:                            ");
 
 switch (e_ident[EI_OSABI])
 {
-case CUSTOM_ELFOSABI_NONE:
+case ELFOSABI_NONE:
 printf("UNIX - System V\n");
 break;
-case CUSTOM_ELFOSABI_HPUX:
+case ELFOSABI_HPUX:
 printf("UNIX - HP-UX\n");
 break;
-case CUSTOM_ELFOSABI_NETBSD:
+case ELFOSABI_NETBSD:
 printf("UNIX - NetBSD\n");
 break;
-case CUSTOM_ELFOSABI_LINUX:
+case ELFOSABI_LINUX:
 printf("UNIX - Linux\n");
 break;
-case CUSTOM_ELFOSABI_SOLARIS:
+case ELFOSABI_SOLARIS:
 printf("UNIX - Solaris\n");
 break;
-case CUSTOM_ELFOSABI_IRIX:
+case ELFOSABI_IRIX:
 printf("UNIX - IRIX\n");
 break;
-case CUSTOM_ELFOSABI_FREEBSD:
+case ELFOSABI_FREEBSD:
 printf("UNIX - FreeBSD\n");
 break;
-case CUSTOM_ELFOSABI_TRU64:
+case ELFOSABI_TRU64:
 printf("UNIX - TRU64\n");
 break;
-case CUSTOM_ELFOSABI_ARM:
+case ELFOSABI_ARM:
 printf("ARM\n");
 break;
-case CUSTOM_ELFOSABI_STANDALONE:
+case ELFOSABI_STANDALONE:
 printf("Standalone App\n");
 break;
 default:
@@ -174,26 +174,26 @@ e_ident[EI_ABIVERSION]);
  */
 void custom_print_type(unsigned int e_type, unsigned char *e_ident)
 {
-if (e_ident[EI_DATA] == CUSTOM_ELFDATA_2MSB)
+if (e_ident[EI_DATA] == ELFDATA2MSB)
 e_type >>= 8;
 
 printf("  Custom Type:                              ");
 
 switch (e_type)
 {
-case CUSTOM_ET_NONE:
+case ET_NONE:
 printf("NONE (None)\n");
 break;
-case CUSTOM_ET_REL:
+case ET_REL:
 printf("REL (Relocatable file)\n");
 break;
-case CUSTOM_ET_EXEC:
+case ET_EXEC:
 printf("EXEC (Executable file)\n");
 break;
-case CUSTOM_ET_DYN:
+case ET_DYN:
 printf("DYN (Shared object file)\n");
 break;
-case CUSTOM_ET_CORE:
+case ET_CORE:
 printf("CORE (Core file)\n");
 break;
 default:
@@ -210,14 +210,14 @@ void custom_print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
 printf("  Custom Entry point address:               ");
 
-if (e_ident[EI_DATA] == CUSTOM_ELFDATA_2MSB)
+if (e_ident[EI_DATA] == ELFDATA2MSB)
 {
 e_entry = ((e_entry << 8) & 0xFF00FF00) |
 ((e_entry >> 8) & 0xFF00FF);
 e_entry = (e_entry << 16) | (e_entry >> 16);
 }
 
-if (e_ident[EI_CLASS] == CUSTOM_ELFCLASS_32)
+if (e_ident[EI_CLASS] == ELFCLASS32)
 printf("%#x\n", (unsigned int)e_entry);
 else
 printf("%#lx\n", e_entry);
@@ -235,7 +235,7 @@ if (close(elf) == -1)
 {
 dprintf(STDERR_FILENO,
 "Custom Error: Can't close fd %d\n", elf);
-exit(CUSTOM_CANT_CLOSE_FD);
+exit(98);
 }
 }
 
@@ -257,14 +257,14 @@ fd = open(argv[1], O_RDONLY);
 if (fd == -1)
 {
 dprintf(STDERR_FILENO, "Custom Error: Can't read file %s\n", argv[1]);
-exit(CUSTOM_CANT_READ_FILE);
+exit(98);
 }
 custom_header = malloc(sizeof(Elf64_Ehdr));
 if (custom_header == NULL)
 {
 custom_close_elf(fd);
 dprintf(STDERR_FILENO, "Custom Error: Can't read file %s\n", argv[1]);
-exit(CUSTOM_CANT_READ_FILE);
+exit(98);
 }
 s = read(fd, custom_header, sizeof(Elf64_Ehdr));
 if (s == -1)
@@ -272,7 +272,7 @@ if (s == -1)
 free(custom_header);
 custom_close_elf(fd);
 dprintf(STDERR_FILENO, "Custom Error: `%s`: No such file\n", argv[1]);
-exit(CUSTOM_NO_SUCH_FILE);
+exit(98);
 }
 
 custom_check_elf(custom_header->e_ident);
@@ -288,5 +288,5 @@ custom_print_entry(custom_header->e_entry, custom_header->e_ident);
 
 free(custom_header);
 custom_close_elf(fd);
-return (CUSTOM_SUCCESS);
+return (0);
 }
