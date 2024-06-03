@@ -35,7 +35,7 @@ char **strtow(char *str)
 {
 char **words;
 char *word_start;
-int i = 0, word_len, word_count;
+int i = 0, j, word_len, word_count;
 if (str == NULL || *str == '\0')
 return (NULL);
 word_count = count_words(str);
@@ -63,7 +63,7 @@ free(words[i--]);
 free(words);
 return (NULL);
 }
-for (int j = 0; j < word_len; j++)
+for (j = 0; j < word_len; j++)
 words[i][j] = word_start[j];
 words[i][word_len] = '\0';
 i++;
